@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function FasfFood() {
+        this.burger = {
+            small: {
+                price: 50,
+                callories: 40
+            },
+            big: {
+                price: 100,
+                callories: 60
+            }
+        };
+        this.filling = {
+            chese: {
+                price: 10,
+                callories: 20
+            },
+            slad: {
+                price: 20,
+                callories: 5
+            },
+            popato: {
+                price: 15,
+                callories: 10
+            }
+        };
+        this.additional = {
+            flovor: {
+                price: 15,
+                callories: 0
+            },
+            mayonnaise: {
+                price: 20,
+                callories: 5
+            }
+        };
+        this.order = {
+            burger: {},
+            filling: {},
+            additional: {},
+        };
+    }
+
+    FasfFood.prototype.addBurger = function (name) {
+        console.log(this);
+    };
+    FasfFood.prototype.getBurger = function (name) {
+
+        if (this.burger.hasOwnProperty(name)) {
+            return this.burger[name]
+        } else {
+            return {
+                price: 0,
+                callories: 0
+            }
+        }
+    };
+    FasfFood.prototype.getFilling = function (name) {
+        if (this.filling.hasOwnProperty(name)) {
+            return this.filling[name]
+        } else {
+            return {
+                price: 0,
+                callories: 0
+            }
+        }
+    };
+    FasfFood.prototype.getAdditional = function (name) {
+        if (this.additional.hasOwnProperty(name)) {
+            return this.additional[name]
+        } else {
+            return {
+                price: 0,
+                callories: 0
+            }
+        }
+    };
+    FasfFood.prototype.setOrder = function (burger, filling, additional) {
+        this.order.burger = this.getBurger(burger);
+        this.order.filling = this.getFilling(filling);
+        this.order.additional = this.getAdditional(additional);
+    };
+    FasfFood.prototype.getSumPrice = function () {
+        let order = this.order;
+        let sum = 0;
+        for (key in order) {
+            let value=order[key];
+            sum += value.price;
+        }
+        return sum;
+    };
+    FasfFood.prototype.getSumCallories = function () {
+        let order = this.order;
+        let sum = 0;
+        for (key in order) {
+            let value=order[key];
+            sum += value.callories;
+        }
+        return sum;
+    };
+
+    let f = new FasfFood();
+    f.setOrder('big', 'chese', 'flovor');
+    console.log(f);
+    console.log(f.getSumPrice());
+    console.log(f.getSumCallories());
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function add(a,b) {
+        return a+ b
+    }
+
+    function partial(func,first) {
+        return function(second){
+            return func(first, second)
+        }
+    }
+    let add5=partial(add,5);
+    console.log(add5);
+    console.log(add5(1));
+    console.log(add5(8));
+
+</script>
+</body>
+</html>

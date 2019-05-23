@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function testFunc(a, b, c) {
+        return 'a=' + a + ',b=' + b + ',c=' + c;
+    }
+    let test1_3 =partialDeep(testFunc,1,undefined,3);
+    
+    function partialDeep(fn){
+       let oldArgs= [].slice.call(arguments,1);
+       oldArgs=oldArgs.filter(function (el) {
+           if((typeof (el))==="number"){
+               return true;
+           }
+           return false;
+       });
+       return function(){
+           let newArgs =[].slice.call(arguments);
+           // return fn(...oldArgs, ...newArgs);
+           return fn.apply(null,oldArgs.concat(newArgs))
+       }
+    }
+    console.log(test1_3(2));
+
+    
+</script>
+</body>
+</html>
